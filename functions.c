@@ -27,6 +27,7 @@ int _puts(char *s)
 		_putchar('l');
 		_putchar(')');
 		return (-1);
+	}
 
 	while (s[j])
 	{
