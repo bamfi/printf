@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 	int j, count = 0;
 	char *ss;
 
-	if (!format)
+	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
