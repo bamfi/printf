@@ -18,6 +18,16 @@ int _puts(char *s)
 {
 	int j = 0;
 
+	if (s == NULL)
+	{
+		_putchar('(');
+		_putchar('n');
+		_putchar('u');
+		_putchar('l');
+		_putchar('l');
+		_putchar(')');
+		return (-1);
+
 	while (s[j])
 	{
 		_putchar(s[j]);
