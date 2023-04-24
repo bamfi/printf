@@ -1,27 +1,35 @@
 #include "main.h"
-/**
- * _putchar - prints a character
- * @c: a character
- * Return: an integer 1 on success
-*/
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
+
 
 /**
- * _puts - print a string
- * @s: a string
- * Return: the number of characters written
-*/
-int _puts(char *s)
+ * _print_integer - prints an integer to stdout
+ * @n: the integer to print
+ *
+ * Return: the number of characters printed
+ */
+int _print_integer(int n)
 {
-	int j = 0;
+	int i, j = 1, count = 0;
+	unsigned int num;
 
-	while (s[j])
+	if (n < 0)
 	{
-		_putchar(s[j]);
-		j++;
+		_putchar('-');
+		num = -n;
+		count++;
 	}
-	return (j);
+	else
+		num = n;
+
+	while (num / j > 9)
+		j *= 10;
+
+	for (i = j; i >= 1; i /= 10)
+	{
+		_putchar(num / i + '0');
+		num %= i;
+		count++;
+	}
+
+	return (count);
 }

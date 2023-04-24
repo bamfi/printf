@@ -1,50 +1,47 @@
 #include "main.h"
 /**
- * _printf - a function that produces output according to a format.
- * @format: a string of characters that specifies the
- * output format of the function
- * Return: a positive integer on success
-*/
+ * _printf - print formatted output to stdout
+ * @format: format string containing conversion specifiers
+ * Return: number of characters printed, or -1 on error
+ */
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int j, count = 0;
-	char *ss;
+	int count = 0;
 
-	if (!format)
+	if (format == NULL)
 		return (-1);
-
 	va_start(args, format);
-	for (j = 0; format && format[j]; j++)
+	while (*format != '\0')
 	{
-		if (format[j] == '%')
+		if (*format == '%')
 		{
-			j++;
-			switch (format[j])
+			format++;
+			switch (*format)
 			{
-				case'c':
-					count += _putchar(va_arg(args, int));
-					break;
-				case's':
-					ss = va_arg(args, char *);
-					if (ss == NULL)
-					count += _puts("(null)");
-					else
-					count += _puts(ss);
-					break;
-				case'%':
-					count += _putchar('%');
-					break;
-				default:
-					break;
+			case 'c':
+				count += _putchar(va_arg(args, int));
+				break;
+			case 's':
+				count += _puts(va_arg(args, char *));
+				break;
+			case 'd':
+				count += _print_integer(va_arg(args, int));
+				break;
+			case '%':
+				count += _putchar('%');
+				break;
+			default:
+				return (-1);
 			}
 		}
 		else
 		{
-			_putchar(format[j]);
-			count++;
+			count += _putchar(*format);
 		}
+		format++;
 	}
 	va_end(args);
 	return (count);
 }
+
