@@ -64,6 +64,37 @@ int print_int(int z)
 	return (count);
 }
 
+/**
+ * print_binary - a function that convert an unsigned int to binary
+ * and print it
+ * @a: unsigned int to be converted
+ * Return: number of binary digit printed
+*/
+int print_binary(unsigned int a)
+{
+	int j = 0, count = 0;
+	char ary[32];
+
+	if (a == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
+
+	while (a > 0)
+	{
+		ary[j] = (a & 1) + '0';
+		a = a >> 1;
+		j++;
+	}
+
+	for (; j >= 0; j--)
+	{
+		_putchar(ary[j]);
+		count++;
+	}
+	return (count);
+}
 
 
 
