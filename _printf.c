@@ -9,7 +9,6 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int j, count = 0;
-	char *ss;
 
 	if (format == NULL)
 		return (-1);
@@ -26,11 +25,11 @@ int _printf(const char *format, ...)
 					count += _putchar(va_arg(args, int));
 					break;
 				case's':
-					ss = va_arg(args, char *);
-					if (ss == NULL)
-					count += _puts("(null)");
-					else
-					count += _puts(ss);
+					count += _puts(va_arg(args, char *));
+					break;
+				case'i':
+				case'd':
+					count += print_int(va_arg(args, int));
 					break;
 				case'%':
 					count += _putchar('%');

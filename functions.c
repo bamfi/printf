@@ -36,3 +36,42 @@ int _puts(char *s)
 	}
 	return (j);
 }
+
+/**
+ * print_int - a function that print an integer
+ * @z: a number
+ * Return: the number of digit printed
+ */
+int print_int(int z)
+{
+	int count = 0;
+
+	if (z < 0)
+	{
+		_putchar('-');
+		z = -z;
+		count++;
+	}
+
+	if (z / 10)
+	{
+		count += print_int(z / 10);
+	}
+
+	_putchar(z % 10 + '0');
+	count++;
+
+	return (count);
+}
+
+
+
+
+
+
+
+
+
+
+
+
